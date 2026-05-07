@@ -68,7 +68,12 @@ class Database
 
 
 
-
+/* db name = db_users
+    tabulka = users
+    5 stlpcov = id, username, password, role, created_at
+    username, password unique
+    created_at = timestamp miesto varchar
+    */
 
 
 

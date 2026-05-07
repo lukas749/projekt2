@@ -11,16 +11,20 @@ $db = new Database();
 
 $pdo = $db->getConnection();
 
+$userRepo = new UserRepository($pdo);
 var_dump($pdo);
 
-$userRepo = new UserRepository($pdo);
+/*$user = $userRepo->findByUsername("Zdeno");*/
 
+$user = new User("Fero", "Fero","user", false);
 
-$user = new User("Miro", "Miro", "user", false);
+$userRepo->save($user);
 
- var_dump($user);
-
-$user->setUsername("alexandra");
-var_dump($user);
+if ($user = $userRepo->findByUsername("Fero")) {
+   $user->setUsername("Majo");
+    $user->setPassword("Majo");
+    $user->setRole("user");
+    $userRepo->update($user); 
+}
 
 ?>
