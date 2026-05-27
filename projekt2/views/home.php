@@ -17,13 +17,15 @@
                     <input type="text" class="form-control" id="username" name="username" placeholder="Username" required> 
                 </div>
                 </div>
-                <div class="col">
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="role" name="role" placeholder="Role" required> 
-                </div>
+                    <input type="text" class="form-control" id="password" name="password" placeholder="Password" required> 
                 </div>
                 <div class="col">
+                <form action="save.php" method="POST">
+                <input type="hidden" name="action" value="save">
+                <input type="hidden" name="user_id" value="" >
                 <button type="submit" class="btn btn-primary">Save</button>
+                </form>
             </div>
         </div>
     </form>
@@ -46,20 +48,20 @@
         <td><?= $user->getRole(); ?></td>
         <td><?= $user->getCreatedAt(); ?></td>
         <td>
-        <form action="index.php" method="POST"> 
+        <form action="delete.php" method="POST"> 
             <input type="hidden" name="action" value="delete">
             <input type="hidden" name="user_id" value="<?= $user->getId(); ?>" >
             <button type = "submit" class = "btn btn-danger">Delete</button>
         </form>
-        <form action= "index.php" method="POST">
+        <form action= "info.php" method="POST">
             <input type="hidden" name="action" value="info">
             <input type="hidden" name="user_id" value="<?= $user->getId(); ?>" >    
-            <button type="button" class="btn btn-info">Info</button>
+            <button type="submit" class="btn btn-info">Info</button>
          </form>
-        <form action = "index.php" method="POST">  
+        <form action = "update.php" method="POST">  
             <input type="hidden" name="action" value="update">
             <input type="hidden" name="user_id" value="<?= $user->getId(); ?>" >
-            <button type="button" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </td>
 

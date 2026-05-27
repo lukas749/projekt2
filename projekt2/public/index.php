@@ -13,51 +13,24 @@ $db = new Database();
 $pdo = $db->getConnection();
 $userRepo =new UserRepository($pdo);
 
-/*$user = new User("Fero","Fero","admin",false);
-
-$userRepo->save($user);
-
-$user = $userRepo->findByUsername("Stano");
-
-if($user){
-
-    $user->setUsername("Peter");
-
-    $userRepo->update($user);
-
-    echo "Používateľ bol upravený";
-}
-else{
-    echo "Používateľ neexistuje";
-}
-*/
 
 
 
 $users = $userRepo->select();
-/*var_dump($users);
-*/
-include __DIR__ ."/../views/home.php";
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["action"] === "update") {
-    
-}
 /*
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["action"] === "info") {
-    $stmt = $db->prepare("SELECT * FROM users WHERE id = :id");
-    $stmt->execute([":id" => $_GET["id"]]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+$marian = new User("Marian", "Marian", "user", false);
+$userRepo->save($marian);
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["action"] === "save") {
+    $db = new Database();
+    $pdo = $db->getConnection();
+    $userRepo =new UserRepository($pdo);
+    
+    $userRepo->delete($_POST["user_id"]);
+    header("Location: index.php");
 }
 */
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["action"] === "delete") {
-   $sql= "DELETE * FROM users WHERE id=:id;";
-   $stmt = $db->prepare($sql);
-   $stmt = execute([
-        ":id" => $_POST["user_id"]
-   ]);
-
-}
 
 
-
-
+include __DIR__ ."/../views/home.php";
 ?>
