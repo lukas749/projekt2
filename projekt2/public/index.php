@@ -7,30 +7,25 @@ session_start();
 use App\Core\Database;
 use App\Repositories\UserRepository;
 use App\Models\User;
+use App\Core\Router;
+use App\Controllers\UserController;
 
 $db = new Database();
 
 $pdo = $db->getConnection();
-$userRepo =new UserRepository($pdo);
+$userRepo = new UserRepository($pdo);
+
+$userController = new UserController($userRepo);
+
+$router = new Router();
+
+$router->add("/", $userController, "index");
+
+$router->add("/login", $userController, "login");
+
+$router->add("/register", $userController, "register");
+
+$router->resolve();
 
 
-
-
-$users = $userRepo->select();
-/*
-$marian = new User("Marian", "Marian", "user", false);
-$userRepo->save($marian);
-
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["action"] === "save") {
-    $db = new Database();
-    $pdo = $db->getConnection();
-    $userRepo =new UserRepository($pdo);
-    
-    $userRepo->delete($_POST["user_id"]);
-    header("Location: index.php");
-}
-*/
-
-
-include __DIR__ ."/../views/home.php";
 ?>
