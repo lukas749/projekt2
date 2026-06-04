@@ -31,6 +31,18 @@ form{
 
 </head>
 <body>
+
+<?php
+if (isset($_SESSION["flash_error"])):?>
+  <div class="alert alert-danger" role="alert">
+        <?php 
+          echo $_SESSION["flash_error"];
+          unset($_SESSION["flash_error"]);
+        ?>
+  </div>
+<?php endif;?>
+
+
 <form action="/projekt2/public/login" method="POST">
     <h2 class="text-center fw-bold fs-2">Login</h2>
 

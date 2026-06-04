@@ -31,8 +31,20 @@ form{
 
 </head>
 <body>
+
 <form action="/projekt2/public/register" method="POST">
-    <h2 class="text-center fw-bold fs-2">Register</h2>
+
+<?php
+if (isset($_SESSION["flash_error"])):?>
+  <div class="alert alert-danger" role="alert">
+        <?php 
+          echo $_SESSION["flash_error"];
+          unset($_SESSION["flash_error"]);
+        ?>
+  </div>
+<?php endif;?>
+
+<h2 class="text-center fw-bold fs-2">Register</h2>
 
     <div class="mb-3">
     <label for="username" class="form-label">Username:</label>
